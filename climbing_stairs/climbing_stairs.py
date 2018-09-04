@@ -2,8 +2,19 @@
 
 import sys
 
-def climbing_stairs(n):
-  pass
+def climbing_stairs(n, cache=None):
+    if n == 0:
+        return 1
+    elif n == 1:
+        return 1
+    elif n == 2:
+        return 2
+    elif cache[n] > 2:
+        return  cache[n]
+    cache[n] = climbing_stairs(n-1, cache) + climbing_stairs(n-2, cache) + climbing_stairs(n-3, cache)
+    return cache[n]
+
+
 
 
 if __name__ == "__main__":
