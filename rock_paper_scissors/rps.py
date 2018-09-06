@@ -3,20 +3,19 @@
 import sys
 
 def rock_paper_scissors(n):
+    #return an array
     allPossibilities = []
+    #possible plays list
     options = ['rock', 'paper', 'scissors']
-    def build_permutations(round, roundNumber):
-        for i in range(0, len(options)):
-            round.append(options[i])
-            print('roudn', round)
-            if n == roundNumber:
-                return allPossibilities.append(round)
-            else:
-                build_permutations(round, roundNumber + 1)
-            round.pop(len(round)-1)
-    build_permutations([], 1)
-    return allPossibilities
+    def generate_plays(rounds_left, result=[]):
+        if rounds_left == 0:
+            allPossibilities.append(result)
+            return
+        for option in options:
+            generate_plays(rounds_left - 1, result + [option])
 
+    generate_plays(n, [])
+    return allPossibilities
 
 
 if __name__ == "__main__":
